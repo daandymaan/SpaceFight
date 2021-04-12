@@ -19,6 +19,13 @@ public class Ship : MonoBehaviour
     public float maxSpeed = 50.0f;
     public float maxForce = 10.0f;
 
+    public float health = 10;
+    public float ammo = 10;
+
+    public GameObject bullet;
+
+    public GameObject target;
+
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
@@ -102,6 +109,17 @@ public class Ship : MonoBehaviour
         return force;
     }
 
+    public void OnTriggerEnter(Collider c)
+    {
+        if(c.tag == "Laser")
+        {
+            if(health > 0)
+            {
+                health --;
+            }
+            Destroy(c.gameObject);
+        }
+    }
 
     // Update is called once per frame
     void Update()
