@@ -2,17 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FleeBehaviour : MonoBehaviour
+public class FleeBehaviour : SteeringBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Ship targetEnemy = null;
+    public Vector3 target = Vector3.zero;
+
+    public void OnDrawGizmos()
     {
-        
+        if (isActiveAndEnabled && Application.isPlaying)
+        {
+            Gizmos.color = Color.cyan;
+            if (targetEnemy != null)
+            {
+                target = targetEnemy.transform.position;
+            }
+            Gizmos.DrawLine(transform.position, target);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override Vector3 Calculate()
     {
-        
+        return - ship.SeekForce(target);
+    }
+
+    public void Update()
+    {
+        if(targetEnemy != null)
+        {
+            target = targetEnemy.transform.position;
+        }
     }
 }
