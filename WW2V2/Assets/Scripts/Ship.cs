@@ -24,6 +24,8 @@ public class Ship : MonoBehaviour
 
     public GameObject bullet;
 
+    public string enemyTag;
+
     public GameObject target;
 
     public void OnDrawGizmos()
@@ -119,6 +121,26 @@ public class Ship : MonoBehaviour
             }
             Destroy(c.gameObject);
         }
+    }
+    public GameObject getClosestEnemy()
+    {
+        GameObject closestEnemy = null;
+        if(target == null){
+            float distance = Mathf.Infinity;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+            Vector3 position = transform.position;
+            foreach(GameObject enemy in enemies)
+            {
+                Vector3 diff = enemy.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance)
+                {
+                    closestEnemy = enemy;
+                    distance = curDistance;
+                }
+            }
+        }
+        return closestEnemy;
     }
 
     // Update is called once per frame
