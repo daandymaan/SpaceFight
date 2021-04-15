@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FleeBehaviour : SteeringBehaviour
 {
-    public Ship targetEnemy = null;
+    public GameObject enemyTarget;
     public Vector3 target = Vector3.zero;
 
     public void OnDrawGizmos()
@@ -12,9 +12,9 @@ public class FleeBehaviour : SteeringBehaviour
         if (isActiveAndEnabled && Application.isPlaying)
         {
             Gizmos.color = Color.cyan;
-            if (targetEnemy != null)
+            if (enemyTarget != null)
             {
-                target = targetEnemy.transform.position;
+                target = enemyTarget.transform.position;
             }
             Gizmos.DrawLine(transform.position, target);
         }
@@ -27,9 +27,9 @@ public class FleeBehaviour : SteeringBehaviour
 
     public void Update()
     {
-        if(targetEnemy != null)
+        if(enemyTarget != null)
         {
-            target = targetEnemy.transform.position;
+            target = enemyTarget.transform.position;
         }
     }
 }

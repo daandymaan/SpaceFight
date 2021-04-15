@@ -25,16 +25,17 @@ public class Cruise : State
             if(distanceFromEnemy.magnitude < owner.GetComponent<Ship>().shootingRange)
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Attack());
                 }
                 //Enemy not in FOV and ship has ammo
-                else if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
-                else 
+                //No ammo
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -43,16 +44,17 @@ public class Cruise : State
             else
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Pursue());
                 }
                 //Enemy not in FOV and ship has ammo
-                else if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
-                else 
+                //No ammo
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -69,6 +71,7 @@ public class Attack : State
     public override void Enter()
     {
         owner.GetComponent<AttackBehaviour>().enabled = true;
+        owner.GetComponent<AttackBehaviour>().enemyTarget = owner.GetComponent<Ship>().targetEnemy;
     }
     public override void Think()
     {
@@ -83,11 +86,12 @@ public class Attack : State
             if(distanceFromEnemy.magnitude < owner.GetComponent<Ship>().shootingRange)
             {
                 //Enemy in FOV and has Ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
-                else 
+                //No ammo
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -95,16 +99,17 @@ public class Attack : State
             else
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Pursue());
                 }
                 //Enemy not in FOV and ship has ammo
-                else if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
-                else 
+                //No ammo
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -122,6 +127,7 @@ public class Flee : State
     public override void Enter()
     {
         owner.GetComponent<FleeBehaviour>().enabled = true;
+        owner.GetComponent<FleeBehaviour>().enemyTarget = owner.GetComponent<Ship>().targetEnemy;
     }
     public override void Think()
     {
@@ -136,12 +142,12 @@ public class Flee : State
             if(distanceFromEnemy.magnitude < owner.GetComponent<Ship>().shootingRange)
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Attack());
                 }
                 //Enemy in FOV and has Ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
@@ -149,12 +155,12 @@ public class Flee : State
             else
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Pursue());
                 }
                 //Enemy not in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
@@ -173,6 +179,7 @@ public class Avoid : State
     public override void Enter()
     {
         owner.GetComponent<CombatAvoidanceBehaviour>().enabled = true;
+        owner.GetComponent<CombatAvoidanceBehaviour>().enemyTarget = owner.GetComponent<Ship>().targetEnemy;
     }
     public override void Think()
     {
@@ -187,12 +194,12 @@ public class Avoid : State
             if(distanceFromEnemy.magnitude < owner.GetComponent<Ship>().shootingRange)
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Attack());
                 }
                 //No ammo
-                if(owner.GetComponent<Ship>().ammo == 0)
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -201,12 +208,12 @@ public class Avoid : State
             else
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Pursue());
                 }
                 //No ammo
-                if(owner.GetComponent<Ship>().ammo == 0)
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -224,6 +231,7 @@ public class Pursue : State
     public override void Enter()
     {
         owner.GetComponent<PursueBehaviour>().enabled = true;
+        owner.GetComponent<PursueBehaviour>().enemyTarget = owner.GetComponent<Ship>().targetEnemy;
     }
     public override void Think()
     {
@@ -238,16 +246,17 @@ public class Pursue : State
             if(distanceFromEnemy.magnitude < owner.GetComponent<Ship>().shootingRange)
             {
                 //Enemy in FOV and ship has ammo
-                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) < 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Attack());
                 }
                 //Enemy not in FOV and ship has ammo
-                else if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo != 0)
+                if(Vector3.Angle(owner.transform.forward, distanceFromEnemy) > 45 && owner.GetComponent<Ship>().ammo > 0)
                 {
                     owner.ChangeState(new Avoid());
                 }
-                else 
+                //No ammo
+                if(owner.GetComponent<Ship>().ammo <= 0)
                 {
                     owner.ChangeState(new Flee());
                 }
@@ -261,7 +270,7 @@ public class Pursue : State
                     owner.ChangeState(new Avoid());
                 }
                 //No Ammo
-                if(owner.GetComponent<Ship>().ammo == 0) 
+                if(owner.GetComponent<Ship>().ammo <= 0) 
                 {
                     owner.ChangeState(new Flee());
                 }

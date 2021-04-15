@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PursueBehaviour : SteeringBehaviour
 {
-    public Ship enemyTarget;
+    public GameObject enemyTarget;
     public Vector3 enemyPos;
 
     public void OnDrawGizmos()
@@ -21,8 +21,12 @@ public class PursueBehaviour : SteeringBehaviour
         float dist = Vector3.Distance(enemyTarget.transform.position, transform.position);
         float time = dist / ship.maxSpeed;
 
-        enemyPos = enemyTarget.transform.position + (enemyTarget.velocity * time);
+        enemyPos = enemyTarget.transform.position + (enemyTarget.GetComponent<Ship>().velocity * time);
 
         return ship.SeekForce(enemyPos);
+    }
+
+    void Start() {
+        
     }
 }
