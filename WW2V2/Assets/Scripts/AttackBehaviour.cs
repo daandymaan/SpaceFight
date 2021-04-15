@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackBehaviour : SteeringBehaviour
 {
-    public Ship enemyTarget;
+    public GameObject enemyTarget;
     public Vector3 enemyPos;
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class AttackBehaviour : SteeringBehaviour
         float dist = Vector3.Distance(enemyTarget.transform.position, transform.position);
         float time = dist / ship.maxSpeed;
 
-        enemyPos = enemyTarget.transform.position + (enemyTarget.velocity * time);
+        enemyPos = enemyTarget.transform.position + (enemyTarget.GetComponent<Ship>().velocity * time);
         shoot();
         return ship.SeekForce(enemyPos);
     }
@@ -42,8 +42,22 @@ public class AttackBehaviour : SteeringBehaviour
         Vector3 distanceToEnemy = ship.targetEnemy.transform.position - ship.transform.position;
         if(Vector3.Angle(ship.transform.forward, distanceToEnemy) < 45 && distanceToEnemy.magnitude <= ship.shootingRange)
         {
-            GameObject bullet = GameObject.Instantiate(ship.bulletPrefab, ship.transform.position + ship.transform.forward * 2, ship.transform.rotation);
-            ship.ammo --;
+            if(ship.ammo > 0)
+            {
+                GameObject bullet = GameObject.Instantiate(ship.bulletPrefab, ship.transform.position + ship.transform.forward * 2, ship.transform.rotation);
+                ship.ammo --;
+            }
+            else
+            {
+                StartCoroutine(reload());
+            }
+            
         }
+    }
+
+    IEnumerator reload()
+    {
+        yield return new WaitForSeconds(5f);
+        ship.ammo = 10;
     }
 }
