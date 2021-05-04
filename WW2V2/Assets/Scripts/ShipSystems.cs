@@ -15,14 +15,11 @@ public class ShipSystems : MonoBehaviour
     public float shootingRange;
     public float detectionRange;
     public GameObject cameras;
-    public List<Vector3> cameraPos = new List<Vector3>();
     public GameObject primaryTurrets;
-    public List<Vector3> pTurretsPos = new List<Vector3>();
 
     void Awake()
     {
-        getCameraPos();
-        getPrimaryTurretsPos();
+        StartCoroutine(enemyDetectionCouroutine());
     }
     void Start()
     {
@@ -32,10 +29,7 @@ public class ShipSystems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(targetEnemy == null)
-        {
-            targetEnemy = getClosestEnemy();
-        }
+
     }
 
     void OnCollisionEnter(Collision collisionInfo)
@@ -62,21 +56,15 @@ public class ShipSystems : MonoBehaviour
         return closestEnemy;
     }
 
-    public void getCameraPos()
+    IEnumerator enemyDetectionCouroutine()
     {
-        cameraPos.Clear();
-        for(int i = 0; i < cameras.transform.childCount; i++)
+        while(true)
         {
-            cameraPos.Add(cameras.transform.GetChild(i).gameObject.transform.position);
-        }
-    }
-
-    public void getPrimaryTurretsPos()
-    {
-        pTurretsPos.Clear();
-        for(int i = 0; i < primaryTurrets.transform.childCount; i++)
-        {
-            pTurretsPos.Add(primaryTurrets.transform.GetChild(i).gameObject.transform.position);
+            if(targetEnemy == null)
+            {
+                targetEnemy = getClosestEnemy();
+            }
+            yield return new WaitForSeconds(10f);
         }
     }
 }

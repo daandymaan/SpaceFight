@@ -16,13 +16,6 @@ public class Ship : MonoBehaviour
     public float banking = 0.1f;
     public float maxSpeed = 50.0f;
     public float maxForce = 10.0f;
-    // public float health = 10;
-    // public float ammo = 10;
-    // public GameObject bulletPrefab;
-    // public string enemyTag;
-    // public GameObject targetEnemy;
-    // public float shootingRange;
-    // public float detectionRange;
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
