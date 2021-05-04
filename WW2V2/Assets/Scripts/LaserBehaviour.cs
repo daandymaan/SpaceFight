@@ -5,11 +5,9 @@ using UnityEngine;
 public class LaserBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Rigidbody rigidbody;
-    private float bulletSpeed = 10.0f;
+    private float bulletSpeed = 20f;
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
 
         Destroy(this.gameObject, 5);
     }
@@ -17,6 +15,6 @@ public class LaserBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.Force);
+        transform.Translate(0,0,bulletSpeed * Time.deltaTime);
     }
 }

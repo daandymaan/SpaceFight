@@ -44,7 +44,7 @@ public class AttackBehaviour : SteeringBehaviour
         // offsetTarget = enemyTarget.transform.TransformPoint(offset);
         float dist = Vector3.Distance(enemyTarget.transform.position, transform.position);
         float time = dist / ship.maxSpeed;
-        enemyPos = offsetTarget + (enemyTarget.GetComponent<Ship>().velocity * time);
+        enemyPos = enemyTarget.transform.position + (enemyTarget.GetComponent<Ship>().velocity * time);
         return ship.SeekForce(enemyPos);
     }
 
@@ -55,7 +55,9 @@ public class AttackBehaviour : SteeringBehaviour
         {
             if(shipInfo.ammo > 0)
             {
-                GameObject bullet = GameObject.Instantiate(shipInfo.bulletPrefab, shipInfo.transform.position, shipInfo.transform.rotation);
+
+                GameObject bullet1 = GameObject.Instantiate(shipInfo.bulletPrefab, shipInfo.primaryTurrets.transform.GetChild(0).gameObject.transform.position, shipInfo.transform.rotation);
+                GameObject bullet2 = GameObject.Instantiate(shipInfo.bulletPrefab, shipInfo.primaryTurrets.transform.GetChild(1).gameObject.transform.position, shipInfo.transform.rotation);
                 shipInfo.ammo --;
             }
         }
@@ -69,8 +71,8 @@ public class AttackBehaviour : SteeringBehaviour
 
     IEnumerator reload()
     {
-        yield return new WaitForSeconds(5f);
-        if(shipInfo.ammo < 10)
+        yield return new WaitForSeconds(10f);
+        if(shipInfo.ammo < 5)
         {
             shipInfo.ammo++;
         }
