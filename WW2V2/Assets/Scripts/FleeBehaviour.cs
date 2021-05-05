@@ -7,6 +7,16 @@ public class FleeBehaviour : SteeringBehaviour
     public GameObject enemyTarget;
     public Vector3 target = Vector3.zero;
 
+    void OnEnable()
+    {
+        ship.maxForce+= 10;
+        ship.maxSpeed+= 10;
+    }
+    void OnDisable()
+    {
+        ship.maxForce-= 10;
+        ship.maxSpeed-= 10;
+    }
     public void OnDrawGizmos()
     {
         if (isActiveAndEnabled && Application.isPlaying)

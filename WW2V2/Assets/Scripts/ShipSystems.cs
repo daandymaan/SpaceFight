@@ -9,6 +9,7 @@ public class ShipSystems : MonoBehaviour
 
     public float health;
     public float ammo;
+    public float maxAmmo;
     public GameObject bulletPrefab;
     public string enemyTag;
     public GameObject targetEnemy;
@@ -34,7 +35,11 @@ public class ShipSystems : MonoBehaviour
 
     void OnCollisionEnter(Collision collisionInfo)
     {
-        
+        Debug.Log("COLLISION OCCURRED");
+        if(collisionInfo.gameObject.tag == "laser")
+        {
+            health--;
+        }
     }
 
     public GameObject getClosestEnemy()
