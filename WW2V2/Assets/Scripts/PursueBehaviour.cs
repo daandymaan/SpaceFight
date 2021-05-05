@@ -26,10 +26,10 @@ public class PursueBehaviour : SteeringBehaviour
     public override Vector3 Calculate()
     {
         // offsetTarget = enemyTarget.transform.TransformPoint(offset);
+        //+ (enemyTarget.GetComponent<Ship>().velocity * time)
         float dist = Vector3.Distance(enemyTarget.transform.position, transform.position);
         float time = dist / ship.maxSpeed;
-
-        enemyPos = offsetTarget + (enemyTarget.GetComponent<Ship>().velocity * time);
+        enemyPos = enemyTarget.transform.position;
 
         return ship.SeekForce(enemyPos);
     }
