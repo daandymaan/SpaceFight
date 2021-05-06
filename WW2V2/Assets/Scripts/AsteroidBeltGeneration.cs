@@ -24,6 +24,7 @@ public class AsteroidBeltGeneration : MonoBehaviour
     {
         float previousX = 0;
         float previousZ = 0;
+        int asteroidIndex = 0;
         for(int row = -100; row < 300; row+= concentation)
         {
             for(int col = -100; col < 300; col+= concentation)
@@ -31,9 +32,12 @@ public class AsteroidBeltGeneration : MonoBehaviour
                 Vector3 asteroidPos = new Vector3(col, generatePerliNoise(previousX + row, previousZ + col), row);
                 previousX+= 10;
                 previousZ+= 10;
-                int asteroidIndex = Mathf.Abs(row)% asteroids.Length;
+                asteroidIndex = Mathf.Abs(asteroidIndex) % asteroids.Length;
                 GameObject asteroid = Instantiate(asteroids[asteroidIndex], asteroidPos, Quaternion.identity);
                 asteroid.transform.SetParent(transform);
+                asteroid.GetComponent<AsteroidBehaviour>().rotatespeed = Mathf.RoundToInt(Mathf.Abs(col) * (asteroidIndex * 0.05f));  
+                asteroid.GetComponent<AsteroidBehaviour>().rotationDirection = Mathf.RoundToInt((asteroidIndex + row) % 5);
+                asteroidIndex++;
             }
         }
     }
