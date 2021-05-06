@@ -16,17 +16,13 @@ public class PursueBehaviour : SteeringBehaviour
             Gizmos.DrawLine(transform.position, enemyPos);
         }
     }
-    void OnEnable()
+    void OnDisable()
     {
-        // offset = transform.position - enemyTarget.transform.position;
-
-        // offset = Quaternion.Inverse(enemyTarget.transform.rotation) * offset;
+        enemyTarget = null;
     }
-
+    
     public override Vector3 Calculate()
     {
-        // offsetTarget = enemyTarget.transform.TransformPoint(offset);
-        //+ (enemyTarget.GetComponent<Ship>().velocity * time)
         float dist = Vector3.Distance(enemyTarget.transform.position, transform.position);
         float time = dist / ship.maxSpeed;
         enemyPos = enemyTarget.transform.position;

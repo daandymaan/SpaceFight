@@ -33,8 +33,11 @@ public class SwerveBehaviour : SteeringBehaviour
         {
             getSwervePointsOstur();
         }
-        // Vector3 distanceVector = enemyTarget.transform.position - ship.transform.position;
-        // FOVAngle = Vector3.Angle(ship.transform.forward, distanceVector);
+    }
+
+    void OnDisable()
+    {
+        enemyTarget = null;
     }
 
     void Start()

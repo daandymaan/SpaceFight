@@ -32,6 +32,7 @@ public class CombatAvoidanceBehaviour : SteeringBehaviour
     {
         ship.maxForce -= 10;
         ship.maxSpeed -= 10;
+        enemyTarget = null;
     }
 
     // Update is called once per frame

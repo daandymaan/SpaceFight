@@ -22,12 +22,13 @@ public class AttackBehaviour : SteeringBehaviour
 
     void OnEnable()
     {
-
-        // offset = transform.position - enemyTarget.transform.position;
-
-        // offset = Quaternion.Inverse(enemyTarget.transform.rotation) * offset;
         StartCoroutine(shootingCouroutine());
         StartCoroutine(reload());
+    }
+
+    void OnDisable()
+    {
+        enemyTarget = null;
     }
 
     public void OnDrawGizmos()
@@ -41,7 +42,6 @@ public class AttackBehaviour : SteeringBehaviour
 
     public override Vector3 Calculate()
     {
-        // offsetTarget = enemyTarget.transform.TransformPoint(offset);
         float dist = Vector3.Distance(enemyTarget.transform.position, transform.position);
         float time = dist / ship.maxSpeed;
         enemyPos = enemyTarget.transform.position ;
