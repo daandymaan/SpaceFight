@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaserBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
-    private float bulletSpeed = 20f;
+    private float bulletSpeed = 30f;
     void Start()
     {
 

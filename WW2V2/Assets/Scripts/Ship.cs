@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     List<SteeringBehaviour> behaviours = new List<SteeringBehaviour>();
-
     public Vector3 force = Vector3.zero;
     public Vector3 acceleration = Vector3.zero;
     public Vector3 velocity = Vector3.zero;

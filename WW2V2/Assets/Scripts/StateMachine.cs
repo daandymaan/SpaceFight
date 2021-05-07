@@ -59,7 +59,6 @@ public class StateMachine : MonoBehaviour
         }
         currentState = newState;
         currentState.owner = this;
-        Debug.Log(currentState.GetType());
         currentState.Enter();
     }
 
@@ -68,7 +67,6 @@ public class StateMachine : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(0, 0.5f));
         while (true)
         {
-            Debug.Log("----THINKING---- SHIP:" + this.GetComponent<Ship>().tag +"    Current state:"+currentState);
             if (globalState != null)
             {
                 globalState.Think();
