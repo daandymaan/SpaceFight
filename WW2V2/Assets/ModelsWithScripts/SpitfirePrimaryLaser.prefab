@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8213202733685979003}
   - component: {fileID: 1726721988702806100}
   - component: {fileID: 226157607116828738}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpitfirePrimaryLaser
   m_TagString: o_laser
   m_Icon: {fileID: 0}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5358918095014721182}
   - component: {fileID: 5218969523575256206}
   - component: {fileID: 4377837228890441594}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MesserPrimaryLaser
   m_TagString: j_laser
   m_Icon: {fileID: 0}
