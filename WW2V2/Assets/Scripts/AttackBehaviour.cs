@@ -50,12 +50,13 @@ public class AttackBehaviour : SteeringBehaviour
 
     public void shoot()
     {
+        shipInfo.shootFX.Play();
         Vector3 distanceToEnemy = shipInfo.targetEnemy.transform.position - shipInfo.transform.position;
         if(Vector3.Angle(shipInfo.transform.forward, distanceToEnemy) < 45 && distanceToEnemy.magnitude <= shipInfo.shootingRange)
         {
             if(shipInfo.ammo > 0)
             {
-
+                shipInfo.GetComponent<AudioSource>().Play();
                 GameObject bullet1 = GameObject.Instantiate(shipInfo.bulletPrefab, shipInfo.primaryTurrets.transform.GetChild(0).gameObject.transform.position, shipInfo.transform.rotation);
                 GameObject bullet2 = GameObject.Instantiate(shipInfo.bulletPrefab, shipInfo.primaryTurrets.transform.GetChild(1).gameObject.transform.position, shipInfo.transform.rotation);
                 shipInfo.ammo --;
@@ -66,7 +67,7 @@ public class AttackBehaviour : SteeringBehaviour
     IEnumerator shootingCouroutine()
     {
         shoot();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator reload()

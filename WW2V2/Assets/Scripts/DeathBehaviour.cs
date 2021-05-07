@@ -81,6 +81,7 @@ public class DeathBehaviour : SteeringBehaviour
 
     IEnumerator explosion()
     {
+        shipInfo.deathSwoopFX.Play();
         yield return new WaitForSeconds(5f);
         explodeShip();
     }
@@ -90,6 +91,7 @@ public class DeathBehaviour : SteeringBehaviour
         ParticleSystem explosionParticleSystem =  explosion.GetComponent<ParticleSystem>();
         float totalTime = explosionParticleSystem.main.duration - 1.5f;
         Destroy(ship.transform.gameObject, totalTime);
+        shipInfo.explosion.Play();
         explosionParticleSystem.Play();
     }
 }
