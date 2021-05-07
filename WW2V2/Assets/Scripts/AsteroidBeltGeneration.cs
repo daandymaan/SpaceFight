@@ -7,6 +7,8 @@ public class AsteroidBeltGeneration : MonoBehaviour
     public GameObject[] asteroids;
     [Range(10, 30)]
     public int concentation;
+    public float maxSize = 5;
+    public float minSize = 1;
     void Awake()
     {
         generateField();
@@ -25,7 +27,7 @@ public class AsteroidBeltGeneration : MonoBehaviour
         float previousX = 0;
         float previousZ = 0;
         int asteroidIndex = 0;
-        for(int row = -100; row < 300; row+= concentation)
+        for(int row = -100; row < 600; row+= concentation)
         {
             for(int col = -100; col < 300; col+= concentation)
             {
@@ -34,6 +36,8 @@ public class AsteroidBeltGeneration : MonoBehaviour
                 previousZ+= 10;
                 asteroidIndex = Mathf.Abs(asteroidIndex) % asteroids.Length;
                 GameObject asteroid = Instantiate(asteroids[asteroidIndex], asteroidPos, Quaternion.identity);
+                float sizeIncrease = Mathf.Clamp(((Mathf.Abs(row) % 4) + asteroidIndex), minSize, maxSize);
+                asteroid.transform.localScale = new Vector3(sizeIncrease, sizeIncrease, sizeIncrease);
                 asteroid.transform.SetParent(transform);
                 asteroid.GetComponent<AsteroidBehaviour>().rotatespeed = Mathf.RoundToInt(Mathf.Abs(col) * (asteroidIndex * 0.05f));  
                 asteroid.GetComponent<AsteroidBehaviour>().rotationDirection = Mathf.RoundToInt((asteroidIndex + row) % 5);

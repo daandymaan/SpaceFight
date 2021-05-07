@@ -5,7 +5,7 @@ using UnityEngine;
 public class AsteroidBehaviour : MonoBehaviour
 {
     public float rotatespeed = 10f;
-
+    public GameObject fracturedRock;
     public int rotationDirection = 0;
     Vector3 direction;
     float maxRotate = 50f;
@@ -42,5 +42,23 @@ public class AsteroidBehaviour : MonoBehaviour
     void Update()
     {
         transform.localRotation *= Quaternion.AngleAxis(rotatespeed * Time.deltaTime, direction);
+    }
+
+    void fracture()
+    {
+        GameObject fracAsteroid = Instantiate(fracturedRock, transform.position, transform.rotation);
+        Destroy(gameObject);
+        Destroy(fracAsteroid, 5f);
+    }
+
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        if(collisionInfo.gameObject.tag == "ostur" ||
+         collisionInfo.gameObject.tag == "jibinis" ||
+         collisionInfo.gameObject.tag == "j_laser" ||
+         collisionInfo.gameObject.tag == "o_laser")
+        {
+            fracture();
+        }
     }
 }
