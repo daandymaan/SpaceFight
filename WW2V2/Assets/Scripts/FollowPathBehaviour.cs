@@ -24,6 +24,10 @@ public class FollowPathBehaviour : SteeringBehaviour {
     {
         
     }
+    void OnDisable()
+    {
+        path = null;
+    }
 
     public override Vector3 Calculate()
     {
