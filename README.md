@@ -4,6 +4,9 @@
 | ------------- |:-------------:| -------:|
 | Daniel Simons | C17371946     | DT228/4 |
 
+
+[![YouTube](http://img.youtube.com/vi/tpjLCBHfik8/0.jpg)](https://youtu.be/tpjLCBHfik8)
+
 # Plot
 This is a recreation of the battle of midway but is set in the future in an asteroid field.
 The ostur forces (Good guys) are attempting a sneak attack on the unsuspsecting jibinis (Bad guys) and their new superweapon through an asteroid.
