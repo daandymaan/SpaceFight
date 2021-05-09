@@ -211,87 +211,7 @@ public class Swerve : State
     {
         if(owner.GetComponent<SwerveBehaviour>().swerveComplete == true)  
         {
-            if(owner.GetComponent<ShipSystems>().targetEnemy == null ||  owner.GetComponent<SwerveBehaviour>().enemyTarget == null)
-            {
-                owner.ChangeState(new Cruise());
-            } 
-            else 
-            {
-                //Distance from enemy ship
-                Vector3 distanceFromEnemy = owner.GetComponent<ShipSystems>().targetEnemy.transform.position - owner.transform.position;
-                //Angle from enemy ship
-                float angleFromEnemy = Vector3.Angle(owner.transform.forward, distanceFromEnemy);
-
-                //Distance to enemy is within detection range but not within shooting range
-                if(distanceFromEnemy.magnitude < owner.GetComponent<ShipSystems>().detectionRange && distanceFromEnemy.magnitude > owner.GetComponent<ShipSystems>().shootingRange)
-                {
-                    if(angleFromEnemy <= 60)
-                    {
-                        //The ship has ammo
-                        if(owner.GetComponent<ShipSystems>().ammo > 0)
-                        {
-                            owner.ChangeState(new Pursue());
-                        }
-                        else 
-                        {
-                            owner.ChangeState(new Flee());
-                        }
-                    }
-                    else 
-                    {
-                        //If enemy is behind but within detection range
-                        owner.ChangeState(new Avoid());
-                    }
-                }
-
-                //Distance to enemy is within shooting range
-                if(distanceFromEnemy.magnitude < owner.GetComponent<ShipSystems>().shootingRange && distanceFromEnemy.magnitude > 10)
-                {
-                    //Angle to ship is within FOV
-                    if(angleFromEnemy <= 45)
-                    {
-                        //The ship has ammo
-                        if(owner.GetComponent<ShipSystems>().ammo > 0)
-                        {
-                            owner.ChangeState(new Attack());
-                        }
-                        else 
-                        {
-                            owner.ChangeState(new Avoid());
-                        }
-                    } 
-                    else 
-                    {
-                        //The ship has ammo
-                        if(owner.GetComponent<ShipSystems>().ammo > 0)
-                        {
-                            owner.ChangeState(new Pursue());
-                        }
-                        else
-                        {
-                            owner.ChangeState(new Flee());
-                        }
-                    }
-                }
-
-                if(distanceFromEnemy.magnitude <= 10)
-                {
-                    owner.ChangeState(new Flee());
-                }  
-
-                //Distance to enemy is outside of all ranges
-                if(distanceFromEnemy.magnitude > owner.GetComponent<ShipSystems>().detectionRange)
-                {
-                    owner.ChangeState(new Cruise());
-                }              
-            }
-        }
-        else 
-        {
-            if(Vector3.Distance(owner.GetComponent<ShipSystems>().targetEnemy.transform.position, owner.GetComponent<ShipSystems>().transform.position) > owner.GetComponent<ShipSystems>().detectionRange)
-            {
-                owner.ChangeState(new Cruise());
-            }
+            owner.ChangeState(new Cruise());
         }
     }
     public override void Exit() 
@@ -381,6 +301,7 @@ public class Avoid : State
 {
     public override void Enter()
     {
+        Debug.Log("COMBAT AVOIDANCE");
         owner.GetComponent<CombatAvoidanceBehaviour>().enemyTarget = owner.GetComponent<ShipSystems>().targetEnemy;
         owner.GetComponent<CombatAvoidanceBehaviour>().enabled = true;
     }
