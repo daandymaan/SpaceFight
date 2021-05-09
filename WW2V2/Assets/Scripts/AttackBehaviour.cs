@@ -22,7 +22,7 @@ public class AttackBehaviour : SteeringBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(shootingCouroutine());
+        StartCoroutine(shootingCoroutine());
         StartCoroutine(reload());
     }
 
@@ -64,7 +64,7 @@ public class AttackBehaviour : SteeringBehaviour
         }
     }
 
-    IEnumerator shootingCouroutine()
+    IEnumerator shootingCoroutine()
     {
         shoot();
         yield return new WaitForSeconds(1f);

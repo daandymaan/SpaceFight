@@ -284,12 +284,6 @@ public class Flee : State
                     }
                 }
             }
-
-            // //Distance to enemy is outside of all ranges
-            // if(distanceFromEnemy.magnitude > owner.GetComponent<ShipSystems>().detectionRange)
-            // {
-            //     owner.ChangeState(new Cruise());
-            // }
         }
     }
     public override void Exit()
@@ -301,7 +295,6 @@ public class Avoid : State
 {
     public override void Enter()
     {
-        Debug.Log("COMBAT AVOIDANCE");
         owner.GetComponent<CombatAvoidanceBehaviour>().enemyTarget = owner.GetComponent<ShipSystems>().targetEnemy;
         owner.GetComponent<CombatAvoidanceBehaviour>().enabled = true;
     }
@@ -378,12 +371,6 @@ public class Avoid : State
             {
                 owner.ChangeState(new Swerve());
             }
-
-            // //Distance to enemy is outside of all ranges
-            // if(distanceFromEnemy.magnitude > owner.GetComponent<ShipSystems>().detectionRange)
-            // {
-            //     owner.ChangeState(new Cruise());
-            // }
         }
     }
     public override void Exit()
@@ -458,13 +445,7 @@ public class Pursue : State
             if(distanceFromEnemy.magnitude <= 10)
             {
                 owner.ChangeState(new Swerve());
-            }
-
-            // //Distance to enemy is outside of all ranges            
-            // if(distanceFromEnemy.magnitude > owner.GetComponent<ShipSystems>().detectionRange)
-            // {
-            //     owner.ChangeState(new Cruise());
-            // }            
+            }        
         }
     }
     public override void Exit()

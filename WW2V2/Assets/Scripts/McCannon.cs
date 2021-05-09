@@ -19,9 +19,9 @@ public class McCannon : ShipSystems
         maxAmmo = 1000000;
         spawnpoint1 = transform.Find("ShipSpawn").gameObject.transform.GetChild(0).gameObject.transform;
         spawnpoint2 = transform.Find("ShipSpawn").gameObject.transform.GetChild(1).gameObject.transform;
-        StartCoroutine(pathDetectionCouroutine());
-        StartCoroutine(leaderDetectionCouroutine());
-        StartCoroutine(enemyDetectionCouroutine());
+        StartCoroutine(pathDetectionCoroutine());
+        StartCoroutine(leaderDetectionCoroutine());
+        StartCoroutine(enemyDetectionCoroutine());
         StartCoroutine(deployDefence());
         StartCoroutine(fireCannons());
     }
@@ -68,7 +68,7 @@ public class McCannon : ShipSystems
         }
     }
 
-    public new IEnumerator leaderDetectionCouroutine()
+    public new IEnumerator leaderDetectionCoroutine()
     {
         while(true)
         {

@@ -25,9 +25,9 @@ public class ShipSystems : MonoBehaviour
     public AudioSource explosion;
     void Awake()
     {
-        StartCoroutine(pathDetectionCouroutine());
-        StartCoroutine(leaderDetectionCouroutine());
-        StartCoroutine(enemyDetectionCouroutine());
+        StartCoroutine(pathDetectionCoroutine());
+        StartCoroutine(leaderDetectionCoroutine());
+        StartCoroutine(enemyDetectionCoroutine());
     }
     void Start()
     {
@@ -102,7 +102,7 @@ public class ShipSystems : MonoBehaviour
         }
     }
 
-    public IEnumerator enemyDetectionCouroutine()
+    public IEnumerator enemyDetectionCoroutine()
     {
         while(true)
         {
@@ -126,7 +126,7 @@ public class ShipSystems : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
     }
-    public IEnumerator leaderDetectionCouroutine()
+    public IEnumerator leaderDetectionCoroutine()
     {
         while(true)
         {
@@ -137,7 +137,7 @@ public class ShipSystems : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
-    public IEnumerator pathDetectionCouroutine()
+    public IEnumerator pathDetectionCoroutine()
     {
         while(true)
         {

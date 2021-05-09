@@ -23,7 +23,7 @@ public class StateMachine : MonoBehaviour
     }
     public void ChangeStateDelayed(State newState, float delay)
     {
-        coroutine = ChangeStateCoRoutine(newState, delay);
+        coroutine = ChangeStateCoroutine(newState, delay);
         StartCoroutine(coroutine);
     }
 
@@ -35,7 +35,7 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    IEnumerator ChangeStateCoRoutine(State newState, float delay)
+    IEnumerator ChangeStateCoroutine(State newState, float delay)
     {
         yield return new WaitForSeconds(delay);
         ChangeState(newState);
