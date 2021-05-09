@@ -690,8 +690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  ammo: 30
-  maxAmmo: 30
+  ammo: 40
+  maxAmmo: 40
   bulletPrefab: {fileID: 8222854649196485323, guid: 546c1d28fa61ea547bd04c0eac73f9cd,
     type: 3}
   enemyTag: jibinis
@@ -699,13 +699,13 @@ MonoBehaviour:
   targetLeader: {fileID: 0}
   squadLeader: 0
   shootingRange: 50
-  detectionRange: 100
+  detectionRange: 125
   cameras: {fileID: 7439043368890414984}
   primaryTurrets: {fileID: 2578120786062177075}
   path: {fileID: 0}
   deathSwoopFX: {fileID: -8598561089624936063}
   shootFX: {fileID: 7196051682501394686}
-  explosion: {fileID: 8300000, guid: 27e2788b78ebc814796ba212b41c0242, type: 3}
+  explosion: {fileID: 7731358927237743778}
 --- !u!114 &6697655091963536183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c8b5c77ea4444ea4485e525f8df28583, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -965,7 +965,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1017,7 +1017,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 98096c508beaf4e43af05d41d7046624, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1061,7 +1061,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1157,7 +1157,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
