@@ -106,5 +106,4 @@ public class SwerveBehaviour : SteeringBehaviour
             return swervePoints[nextPoint];
         }
     }
-
 }

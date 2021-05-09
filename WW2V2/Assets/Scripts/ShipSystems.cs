@@ -23,7 +23,6 @@ public class ShipSystems : MonoBehaviour
     public AudioSource deathSwoopFX;
     public AudioSource shootFX;
     public AudioSource explosion;
-
     void Awake()
     {
         StartCoroutine(pathDetectionCouroutine());
