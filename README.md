@@ -4,8 +4,11 @@
 | ------------- |:-------------:| -------:|
 | Daniel Simons | C17371946     | DT228/4 |
 
-# Youtube video
-[![YouTube](http://img.youtube.com/vi/tpjLCBHfik8/0.jpg)](https://youtu.be/tpjLCBHfik8)
+# Youtube videos
+|Youtube short movie| Youtube demo of different behaviours|
+|-------------------|:------------------------------------|
+|[![YouTube](http://img.youtube.com/vi/tpjLCBHfik8/0.jpg)](https://youtu.be/tpjLCBHfik8)|[![YouTube](http://img.youtube.com/vi/K37bPsGTnXQ/0.jpg)](https://youtu.be/K37bPsGTnXQ)|
+
 
 # Description of States
 There is a total of 9 states implemented.
