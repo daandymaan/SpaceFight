@@ -13,15 +13,7 @@ public class AsteroidBeltGeneration : MonoBehaviour
     {
         generateField();
     }
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
-
+    
     public void generateField()
     {
         float previousX = 0;

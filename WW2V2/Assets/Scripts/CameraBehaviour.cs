@@ -12,6 +12,10 @@ public class CameraBehaviour : MonoBehaviour
 
     void Awake()
     {
+
+    }
+    void Start() 
+    {
         getOsturLeaderTarget();
         StartCoroutine(changeCameraPosition());
     }
@@ -64,11 +68,6 @@ public class CameraBehaviour : MonoBehaviour
                 target = shipCameraPos[3];
                 targetFocus = ship.GetComponent<ShipSystems>().targetEnemy.gameObject.transform;
             } 
-            else if(ship.GetComponent<ShipSystems>().targetEnemy!=null && ship.GetComponent<ShipSystems>().targetEnemy.GetComponent<ShipSystems>().health == 0)
-            {
-                target = shipCameraPos[0];
-                targetFocus = ship.GetComponent<ShipSystems>().targetEnemy.gameObject.transform;
-            }
             else 
             {
                 target = shipCameraPos[0];

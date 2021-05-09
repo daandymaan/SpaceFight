@@ -8,8 +8,8 @@ public class AsteroidBehaviour : MonoBehaviour
     public GameObject fracturedRock;
     public int rotationDirection = 0;
     Vector3 direction;
-    float maxRotate = 50f;
     float minRotate = 10f;
+    float maxRotate = 50f;
     void Start()
     {
         rotatespeed = Mathf.Clamp(rotatespeed, minRotate, maxRotate);
