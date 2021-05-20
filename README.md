@@ -9,6 +9,11 @@
 |-------------------|:------------------------------------|
 |[![YouTube](http://img.youtube.com/vi/tpjLCBHfik8/0.jpg)](https://youtu.be/tpjLCBHfik8)|[![YouTube](http://img.youtube.com/vi/K37bPsGTnXQ/0.jpg)](https://youtu.be/K37bPsGTnXQ)|
 
+# Plot
+This is a recreation of the battle of midway but is set in the future in an asteroid field.
+The ostur forces (Good guys) are attempting a sneak attack on the unsuspsecting jibinis (Bad guys) and their new superweapon through an asteroid field.
+
+___
 
 # Description of States
 There is a total of 9 states implemented.
@@ -468,6 +473,7 @@ The asteroid model was a free asset from the unity asset store. The asteroids ar
 ___
 # Description of Camera functionality
 [Camera Behaviour](./WW2V2/Assets/Scripts/CameraBehaviour.cs)
+
 The camera functionality is controlled by the CameraBehaviour script, this script uses the lerp function to focus on the position of the ostur ship leader, if the leader dies the new leader is focused on. 
 When the script starts the squad leader is retrieved, each ship has camera positions associated with it. These are the positions that the camera lerps to. 
 If the ship is in a follow path behaviour it gives a side view of the ship while when the ship is attacking it focuses on the target that is attacking. This attack view from the camera gives a nice angle on the ship when it is taken damage. 
@@ -502,11 +508,7 @@ The follow path behaviour camera angle gives a different side angle of the ship 
 
 
 ___
-# Plot
-This is a recreation of the battle of midway but is set in the future in an asteroid field.
-The ostur forces (Good guys) are attempting a sneak attack on the unsuspsecting jibinis (Bad guys) and their new superweapon through an asteroid field.
 
-___
 # Models
 The plane models are based on WW2 planes, such as the spitfire and the messerschmitt BF109
 The large ship in these scene is based on a WW2 japanese battle ship. 
