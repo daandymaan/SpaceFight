@@ -514,7 +514,7 @@ The plane models are based on WW2 planes, such as the spitfire and the messersch
 The large ship in these scene is based on a WW2 japanese battle ship. 
 These three models were modelled using blender.
 Trail renderers were used to simulate the engines of each of the planes, these can be seen in the video
-
+Lasers for the ship were from the Unity asset store as free models 
 ___
 ### Spitfire V2
 Model                      |  Blueprint
